@@ -1,43 +1,42 @@
 package com.zyngl.critique.model
 
-import java.util.SortedSet;
+class Actor extends BaseModel {
 
-class Actor extends BaseModel{
+    String name
+    Date dob
+    BirthPlace birthPlace;
+    String description
+    SortedSet movies
+    SortedSet tags
 
-	String name
-	Date dob
-	BirthPlace birthPlace;
-	String description
-	SortedSet movies
-	SortedSet tags
-	
-	List artistArt
-	
-	Boolean active = true
-	Boolean audited = false
+    List artistArt
 
-	static hasMany = [movies:Movie,
-		artistArt:ImageArt,
-		tags:String]
-		
-	static fetchMode = [movies:"lazy",
-			  artistArt:"lazy",
-			  tags:"lazy"]
-	
-	static constraints = {
-		dob(nullable:true)
-		description(nullable:true)
-		birthPlace(nullable:true)
-	}
-	
-	static mapping = {
-		artistArt cascade:"all,delete-orphan"
-		name column:'Name', index:'Actor_Name_Idx'
-	}
+    Boolean active = true
+    Boolean audited = false
 
-	@Override
-	public Object transform(Object args) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    static hasMany = [movies   : Movie,
+                      artistArt: ImageArt,
+                      tags     : String]
+
+    static fetchMode = [movies   : "lazy",
+                        artistArt: "lazy",
+                        tags     : "lazy"]
+
+    static belongsTo = [Movie]
+
+    static constraints = {
+        dob(nullable: true)
+        description(nullable: true)
+        birthPlace(nullable: true)
+    }
+
+    static mapping = {
+        artistArt cascade: "all,delete-orphan"
+        name column: 'Name', index: 'Actor_Name_Idx'
+    }
+
+    @Override
+    public Object transform(Object args) {
+        return null;
+    }
 }

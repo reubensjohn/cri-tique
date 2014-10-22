@@ -8,7 +8,6 @@ class Director extends BaseModel{
 
 	@Override
 	public Object transform(Object args) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
